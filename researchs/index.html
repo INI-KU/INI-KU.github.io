@@ -1,0 +1,35 @@
+---
+layout: page
+title: Research
+background: '/img/AI.jpeg'
+---
+
+{% for post in paginator.posts limit : 100 %}
+<article class="post-preview">
+  <h5 class="post-title">{{ post.title }}</h5>
+<p class="post-meta" style="font-size: 15px;">
+  {{ post.author }}, {{ post.journal }}
+  in
+  {{ post.date | date: '%B, %Y'}}
+</p>
+</article>
+
+<hr>
+
+{% endfor %}
+
+<!-- Pager -->
+{% if paginator.total_pages > 1 %}
+
+<div class="clearfix">
+  {% if paginator.previous_page %}
+  <a class="btn btn-primary float-left" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr;
+    Before<span class="d-none d-md-inline"> </span></a>
+  {% endif %}
+
+  {% if paginator.next_page %}
+  <a class="btn btn-primary float-right" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next<span class="d-none d-md-inline"></span> &rarr;</a>
+  {% endif %}
+</div>
+
+{% endif %}

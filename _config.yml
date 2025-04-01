@@ -1,0 +1,24 @@
+title:              INI Lab
+email:              antonio97k@korea.ac.kr
+description:        Intelligence aNd Informatics Lab
+author:             INI Lab
+baseurl:            ""
+url:                "https://startbootstrap.github.io"
+# Social Profiles
+twitter_username:   
+github_username:    
+facebook_username:  
+instagram_username:  
+linkedin_username:
+
+# Add your google-analytics ID here to activate google analytics
+google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
+
+# Build settings
+markdown:           kramdown
+paginate:           100
+paginate_path:      "/researchs/page:num/"
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap ## Uncomment this line to silently generate a sitemaps.org compliant sitemap for your Jekyll site
