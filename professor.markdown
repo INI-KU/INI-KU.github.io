@@ -79,7 +79,6 @@ description:
         </div>
         <div>
         <ul>
-            <li><strong>Office</strong>: 애기능생활관 317호</li>
             <li><strong>E-mail</strong>: harrykim@korea.ac.kr</li>
             <li><strong>Phone</strong>: 02-3290-2393</li>
             <li><strong>Homepage</strong>: http://ini.korea.ac.kr</li>
