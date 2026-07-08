@@ -1,4 +1,5 @@
 function parseCSV(text) {
+  if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
   const rows = [];
   let row = [];
   let field = '';
@@ -63,7 +64,7 @@ class SiteNav extends HTMLElement {
         <div class="container">
           <a class="navbar-brand" href="/">KOREA UNIVERSITY</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu <i class="fa fa-bars"></i>
+            <i class="fas fa-bars"></i>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
@@ -186,6 +187,7 @@ class SiteFooter extends HTMLElement {
 }
 
 class CSVListBase extends HTMLElement {
+  sortItems(items) { return sortByDateDesc(items); }
   async connectedCallback() {
     const src = this.getAttribute('src');
     const limit = parseInt(this.getAttribute('limit') || '0', 10);
@@ -195,7 +197,7 @@ class CSVListBase extends HTMLElement {
       if (!res.ok) throw new Error(res.statusText);
       const text = await res.text();
       let items = parseCSV(text);
-      items = sortByDateDesc(items);
+      items = this.sortItems(items);
       if (limit > 0) items = items.slice(0, limit);
       this.innerHTML = items.length
         ? items.map(item => this.renderItem(item)).join('')
@@ -237,11 +239,22 @@ class BookList extends CSVListBase {
 
 class PatentList extends CSVListBase {
   renderItem(p) {
+    const appNum = p.application_number ? `, 출원번호 ${p.application_number}` : '';
     return `
       <article class="post-preview">
         <h5 class="post-title">${p.title}</h5>
-        <p class="post-meta">${p.authors} in ${formatMonth(p.date)}</p>
+        <p class="post-meta">${p.authors}${appNum} in ${formatMonth(p.date)}</p>
       </article>
+      <hr>`;
+  }
+}
+
+class ExperienceList extends CSVListBase {
+  sortItems(items) { return items; }
+  renderItem(e) {
+    return `
+      ${e.title}
+      <blockquote>${e.period}</blockquote>
       <hr>`;
   }
 }
@@ -252,3 +265,4 @@ customElements.define('site-footer', SiteFooter);
 customElements.define('paper-list', PaperList);
 customElements.define('book-list', BookList);
 customElements.define('patent-list', PatentList);
+customElements.define('experience-list', ExperienceList);
