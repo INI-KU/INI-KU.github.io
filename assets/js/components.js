@@ -69,25 +69,25 @@ class SiteNav extends HTMLElement {
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item"><a class="nav-link" href="/" data-nav="/">HOME</a></li>
-              <li class="nav-item"><a class="nav-link" href="/pages/about.html" data-nav="/pages/about.html">ABOUT</a></li>
-              <li class="nav-item"><a class="nav-link" href="/pages/professor.html" data-nav="/pages/professor.html">PROFESSOR</a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/about" data-nav="/pages/about">ABOUT</a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/professor" data-nav="/pages/professor">PROFESSOR</a></li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">MEMBER</a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="/pages/students.html">STUDENTS</a></li>
-                  <li><a class="dropdown-item" href="/pages/alumni.html">ALUMNI</a></li>
+                  <li><a class="dropdown-item" href="/pages/students">STUDENTS</a></li>
+                  <li><a class="dropdown-item" href="/pages/alumni">ALUMNI</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">PUBLICATION</a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="/pages/researchs.html">RESEARCH</a></li>
-                  <li><a class="dropdown-item" href="/pages/patents.html">PATENT</a></li>
-                  <li><a class="dropdown-item" href="/pages/books.html">BOOK</a></li>
-                  <li><a class="dropdown-item" href="/pages/guidelines.html">Generative AI Guidelines</a></li>
+                  <li><a class="dropdown-item" href="/pages/researchs">RESEARCH</a></li>
+                  <li><a class="dropdown-item" href="/pages/patents">PATENT</a></li>
+                  <li><a class="dropdown-item" href="/pages/books">BOOK</a></li>
+                  <li><a class="dropdown-item" href="/pages/guidelines">Generative AI Guidelines</a></li>
                 </ul>
               </li>
-              <li class="nav-item"><a class="nav-link" href="/pages/contact.html" data-nav="/pages/contact.html">Contact</a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/contact" data-nav="/pages/contact">Contact</a></li>
             </ul>
           </div>
         </div>

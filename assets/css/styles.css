@@ -357,8 +357,39 @@ footer .copyright {
 }
 
 /* About page */
-.about-section { margin-top: 2.5rem; }
-.about-section img { width: 100%; max-width: 640px; display: block; margin: 0 auto; }
+.about-section { margin-top: 1.2rem; }
+.about-section hr { margin: 0.4rem 0 0.6rem; }
+.about-section ul { margin-bottom: 0.4rem; }
+.about-section img { width: 100%; max-width: 1400px; display: block; margin: 0 auto; }
+
+.research-group {
+  border: 3px solid;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-top: 1.25rem;
+}
+@media (min-width: 992px) {
+  .research-group {
+    margin-left: -8%;
+    margin-right: -8%;
+  }
+}
+.research-group > h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.research-group .about-section:first-of-type { margin-top: 0.6rem; }
+.research-group--pink {
+  border-color: #fdeef1;
+  background: #fffefe;
+}
+.research-group--pink > h3 { color: #e8b3c0; }
+.research-group--green {
+  border-color: #eff6e3;
+  background: #fefffd;
+}
+.research-group--green > h3 { color: #bcd4a3; }
 
 /* Book page */
 .book-item {
