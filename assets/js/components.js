@@ -259,6 +259,66 @@ class ExperienceList extends CSVListBase {
   }
 }
 
+class MemberList extends HTMLElement {
+  parseSections() {
+    const raw = this.getAttribute('sections') || '';
+    return raw.split(',').map(s => s.trim()).filter(Boolean).map(entry => {
+      const idx = entry.indexOf(':');
+      return idx === -1
+        ? { key: entry, label: entry }
+        : { key: entry.slice(0, idx).trim(), label: entry.slice(idx + 1).trim() };
+    });
+  }
+  async connectedCallback() {
+    const src = this.getAttribute('src');
+    if (!src) { this.innerHTML = '<p>src attribute is required.</p>'; return; }
+    const sections = this.parseSections();
+    if (sections.length === 0) { this.innerHTML = '<p>sections attribute is required.</p>'; return; }
+    const status = this.getAttribute('status');
+    try {
+      const res = await fetch(src);
+      if (!res.ok) throw new Error(res.statusText);
+      let items = parseCSV(await res.text());
+      if (status) items = items.filter(s => s.status === status);
+      this.innerHTML = sections.map((section, i) => {
+        const members = items.filter(s => s.degree === section.key);
+        const style = i === 0
+          ? 'margin-bottom: 1.25rem;'
+          : 'margin-top: 3rem; margin-bottom: 1.25rem;';
+        const body = members.map(s => {
+          const interests = Object.keys(s)
+            .filter(k => /^interest\d*$/i.test(k))
+            .map(k => s[k])
+            .filter(Boolean)
+            .map(x => `<li>${x}</li>`)
+            .join('');
+          const photoInner = `<img src="${s.photo}" alt="${s.name}">`;
+          const photo = s.link
+            ? `<a href="${s.link}" target="_blank" rel="noopener">${photoInner}</a>`
+            : photoInner;
+          const name = s.link
+            ? `<a href="${s.link}" target="_blank" rel="noopener">${s.name}</a>`
+            : s.name;
+          return `
+            <div class="member-row">
+              <div class="member-photo">${photo}</div>
+              <div class="member-info">
+                <h4>${name}</h4>
+                <div class="email">${s.email}</div>
+                <b>Research interests</b>
+                <ul>${interests}</ul>
+              </div>
+            </div>
+            <hr>`;
+        }).join('');
+        return `<h2 style="${style}">${section.label}</h2>${body}`;
+      }).join('');
+    } catch (e) {
+      this.innerHTML = `<p><em>목록을 불러오지 못했습니다: ${e.message}</em></p>`;
+    }
+  }
+}
+
 customElements.define('site-nav', SiteNav);
 customElements.define('site-hero', SiteHero);
 customElements.define('site-footer', SiteFooter);
@@ -266,3 +326,4 @@ customElements.define('paper-list', PaperList);
 customElements.define('book-list', BookList);
 customElements.define('patent-list', PatentList);
 customElements.define('experience-list', ExperienceList);
+customElements.define('member-list', MemberList);

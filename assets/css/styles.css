@@ -294,6 +294,9 @@ footer .copyright {
 }
 .member-info { flex: 1; }
 .member-info h4 { margin: 0.2rem 0 0.3rem; }
+.member-info h4 a, .member-photo a { color: inherit; text-decoration: none; }
+.member-info h4 a:hover { color: var(--ku-red); }
+.member-photo a { display: block; width: 100%; height: 100%; }
 .member-info .email {
   font-family: 'Open Sans', 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   font-style: italic;
